@@ -185,6 +185,9 @@ def upload_file():
     split = bool(request.form.get('split'))
     rearrange = bool(request.form.get('rearrange'))
 
+    if uploaded_file.filename.split(".")[-1] != "pdf":
+        return "File must be a PDF."
+
     if uploaded_file.filename != '':
 
         @after_this_request
