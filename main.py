@@ -193,9 +193,10 @@ def upload_file():
                 os.remove(uploaded_file.filename)
                 if split:
                     os.remove('output.zip')
+                    shutil.rmtree(uploaded_file.filename.replace('.pdf',"") + "_output")
                 else:
-                    uploaded_file.filename.replace('.pdf',"_output.pdf")
-                shutil.rmtree(uploaded_file.filename.replace('.pdf',"") + "_output")
+                    os.remove(uploaded_file.filename.replace('.pdf',"_output.pdf"))
+                    
             except Exception as error:
                 app.logger.error("Error removing or closing downloaded file handle", error)
             return response
