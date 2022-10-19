@@ -1,0 +1,181 @@
+<!-- <!doctype html>
+<html>
+  <head>
+    <title>File Upload</title>
+  </head>
+  <body>
+    <h1>File Upload</h1>
+    <form method="POST" action="" enctype="multipart/form-data">
+      <p><input type="file" name="file"></p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Unscrambler</title>
+    <!-- icon tag -->
+    <link rel="icon" href="/static/scanner.svg" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.min.js"></script>
+
+    <style>
+      .container {
+        max-width: 960px;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div class="container">
+      <main>
+        <div class="py-5 text-center">
+          <img
+            class="d-block mx-auto mb-4"
+            src="/static/scanner.svg"
+            alt=""
+            width="72"
+            height="72"
+          />
+          <h1>Unscrambler</h1>
+          <p class="lead">
+            Unscramble your student's scans with Unscrambler:Flask Edition. <br> Simply upload your pdf file and select options below.
+          </p>
+        </div>
+
+      
+        <div class="row g-5">
+          
+          <!-- <div class="col-mdc-5 col-lg-4 order-md-last">
+            <h3 class="d-flex justify-content-between align-items-center mb-3">
+              <span>Your Output</span>
+            </h3>
+            <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">Product name</h6>
+                  <small class="text-muted">Brief description</small>
+                </div>
+                <span class="text-muted">$12</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">Second product</h6>
+                  <small class="text-muted">Brief description</small>
+                </div>
+                <span class="text-muted">$8</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                  <h6 class="my-0">Third item</h6>
+                  <small class="text-muted">Brief description</small>
+                </div>
+                <span class="text-muted">$5</span>
+              </li>
+              
+            </ul>
+
+   
+          </div> -->
+          
+
+  
+          <div class="col-md-7 col-lg-8">
+            <h2 class="mb-3">Input Document</h2>
+            <form method="POST" action="" enctype="multipart/form-data">
+              <div class="row g-3">
+                <div class="col-sm-6">
+                  <label for="nopages" class="form-label fs-5">Number of pages per document</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="nopages"
+                    name="nopages"
+                    placeholder=""
+                    value=""
+                    required=""
+                  />
+                </div>
+
+                <div class="col-12">
+                  <label for="username" class="form-label fs-5">File</label>
+                  <div class="input-group">
+                    <input type="file" name="file">
+                  </div>
+                </div>  
+                
+
+                <div class="col-12">
+                  <div class="form-check form-switch mt-4">
+                    <input id="booklet" name="booklet" class="form-check-input fs-5" type="checkbox" role="switch">
+                    <label class="form-check-label fs-5" for="booklet">Booklet</label><br>
+                    <label class="form-check-label" for="booklet">Use this option if the original is an A3 booklet. <br> Source PDF is expected to be in landscape with the middle pages coming first.</label>
+                  </div>
+                  <div class="form-check form-switch mt-4">
+                    <input id="split" name="split" class="form-check-input fs-5" type="checkbox" role="switch" checked>
+                    <label class="form-check-label fs-5" for="split">Split</label><br>
+                    <label class="form-check-label" for="split">Use this option if you would like the output to be split into multiple files.</label>
+                  </div>
+                  <div class="form-check form-switch mt-4">
+                    <input id="rearrange" name="rearrange" class="form-check-input fs-5" type="checkbox" role="switch" checked>
+                    <label class="form-check-label fs-5" for="rearrange">Rearrange</label><br>
+                    <label class="form-check-label" for="rearrange">Use this option to rearrange the pages.</label>
+                  </div>
+                </div> 
+                
+
+
+
+              <button class="w-100 btn btn-primary btn-lg mt-5" type="submit" value="Submit">
+                Unscramble!
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </main>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">Brought to you by</p>
+        <a href="https://css.harrowschool.io/" style="text-decoration:none">
+          <div class="row mb-3">
+            <div class="col-md-12">
+
+              <div class="row">
+                <div class="col-6 text-end">
+                  <img src="/static/csslogogrey.png" class="my-auto" height="95rem">
+                </div>
+                <div class="col-6 text-start credits text-secondary">
+                  The <br>Computer<br>
+                  Science<br>
+                  Society
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        <p class="mb-1">Based on a project from PDR</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+    </div>
+  </body>
+
+</html>
